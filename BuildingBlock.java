@@ -1,5 +1,8 @@
 import java.util.Objects;
 
+/**
+ * Represents a building block with material, color, hardness, weight, and type.
+ */
 public class BuildingBlock {
     private String material;
     private String color;
@@ -7,6 +10,15 @@ public class BuildingBlock {
     private double weight;
     private String type;
 
+    /**
+     * Constructs a new BuildingBlock.
+     *
+     * @param material the material of the block
+     * @param color    the color of the block
+     * @param hardness the hardness level of the block (1-10)
+     * @param weight   the weight of the block in kilograms
+     * @param type     the type of the block (e.g., "Decorative", "Building")
+     */
     public BuildingBlock(String material, String color, int hardness, double weight, String type) {
         this.material = material;
         this.color = color;
@@ -15,16 +27,12 @@ public class BuildingBlock {
         this.type = type;
     }
 
+    // Getters for all fields
     public String getMaterial() { return material; }
-    public void setMaterial(String material) { this.material = material; }
     public String getColor() { return color; }
-    public void setColor(String color) { this.color = color; }
     public int getHardness() { return hardness; }
-    public void setHardness(int hardness) { this.hardness = hardness; }
     public double getWeight() { return weight; }
-    public void setWeight(double weight) { this.weight = weight; }
     public String getType() { return type; }
-    public void setType(String type) { this.type = type; }
 
     @Override
     public boolean equals(Object o) {
@@ -32,7 +40,7 @@ public class BuildingBlock {
         if (o == null || getClass() != o.getClass()) return false;
         BuildingBlock that = (BuildingBlock) o;
         return hardness == that.hardness &&
-                Double.compare(that.weight, weight) == 0 &&
+                Math.abs(that.weight - weight) < 0.0001 && // Compare doubles with tolerance
                 Objects.equals(material, that.material) &&
                 Objects.equals(color, that.color) &&
                 Objects.equals(type, that.type);
