@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class BuildingBlock {
     private String material;
     private String color;
@@ -23,6 +25,23 @@ public class BuildingBlock {
     public void setWeight(double weight) { this.weight = weight; }
     public String getType() { return type; }
     public void setType(String type) { this.type = type; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BuildingBlock that = (BuildingBlock) o;
+        return hardness == that.hardness &&
+                Double.compare(that.weight, weight) == 0 &&
+                Objects.equals(material, that.material) &&
+                Objects.equals(color, that.color) &&
+                Objects.equals(type, that.type);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(material, color, hardness, weight, type);
+    }
 
     @Override
     public String toString() {

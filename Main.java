@@ -20,5 +20,9 @@ public class Main {
         for (BuildingBlock block : blocks) {
             System.out.println(block);
         }
+
+        BuildingBlock targetBlock = new BuildingBlock("Stone", "Gray", 7, 5.0, "Building");
+        boolean found = Arrays.stream(blocks).anyMatch(block -> block.equals(targetBlock));
+        System.out.println("Чи знайдено блок: " + found);
     }
 }
